@@ -17,6 +17,9 @@ const useTradingPairs = () => {
     const [selectedTradePair, setSelectedTradePair] = useState(productParam || DEFAULT_TRADING_PAIR);
     const [tickers, setTickers] = useState([]);
     const [messageHistory, setMessageHistory] = useState([]);
+    const messageHistoryRef = useRef(messageHistory);
+
+    useEffect(() => { messageHistoryRef.current = messageHistory })
 
     useEffect(() => {
         const apiCall = async () => {
@@ -63,13 +66,23 @@ const useTradingPairs = () => {
             (lastMessage?.type === "match" || lastMessage?.type === "last_match") &&
             parseFloat(lastMessage.price) > 0
         ) {
-            setTickers((prev) => {
+            setMessageHistory((prev) => {
                 return (prev as any).concat(lastJsonMessage)
                                .sort((a: any, b: any) => (b.trade_id || 0) - (a.trade_id || 0))
                                .slice(0, 50);
             });
         }
     }, [lastJsonMessage]);
+
+    useEffect(() => {
+        // if (loading) { setLoading(false); }
+        const updateTickers = setInterval(() => {
+            setTickers(messageHistoryRef.current);
+        }, 1000);
+        return () => {
+            clearInterval(updateTickers);
+        };
+    }, []);
 
     //update the selected trading pair, reset the message history and tickers 
     //and send a websocket message to unsubscribe from the previous trading pair
