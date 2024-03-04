@@ -1,0 +1,14 @@
+.trade-pair-form {
+    display: flex;
+    gap: 1rem;
+    margin: 0 auto 2rem;
+    max-width: 60rem;
+    justify-content: center;
+}
+
+.trade-pair-form > div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-direction: column;
+}
