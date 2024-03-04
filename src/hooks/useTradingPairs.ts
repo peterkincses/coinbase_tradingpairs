@@ -33,6 +33,10 @@ const useTradingPairs = () => {
         apiCall();
     }, []);
 
+    useEffect(() => {
+        window.history.pushState(null, '', `?product=${selectedTradePair}`);
+    }, [selectedTradePair]);
+
     const handleSelectedTradePairChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setSelectedTradePair((prev) => {
             if (prev === e.target.value) {
