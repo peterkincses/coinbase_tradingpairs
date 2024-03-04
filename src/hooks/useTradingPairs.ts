@@ -56,7 +56,7 @@ const useTradingPairs = () => {
             channels: ["matches"]
         };
         sendJsonMessage(msg);
-    }, [selectedTradePair, readyState]);
+    }, [selectedTradePair, readyState, sendJsonMessage]);
 
     //set tickers to the last 50 messages for the selected trading pair
     useEffect(() => {
