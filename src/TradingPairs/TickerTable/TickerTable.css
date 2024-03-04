@@ -7,6 +7,26 @@
     border-bottom: 1px solid #ddd;
 }
 
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 0 0 1rem;
+}
+
+.button-group button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.button-group .active {
+    background-color: green;
+    color: white;
+}
+
 .tickerTable {
     width: 100%;
     border-collapse: collapse;
