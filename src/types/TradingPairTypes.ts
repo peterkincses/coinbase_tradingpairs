@@ -20,6 +20,16 @@ interface TradingPairProps {
 }
 
 interface lastJsonMessageProps {
+    maker_order_id: string;
+    price: string;
+    product_id: string;
+    sequence: number;
+    side: string;
+    size: string;
+    taker_order_id: string;
+    time: string;
+    trade_id: number;
+    type: string;
 }
 
 export type { 
