@@ -12,7 +12,9 @@ const useTradingPairs = () => {
 
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(TICKERS_SOCKET_URL, {});
     const [tradingPairs, setTradingPairs] = useState<TradingPairProps[]>([]);
-    const [selectedTradePair, setSelectedTradePair] = useState<string>(DEFAULT_TRADING_PAIR);
+    const urlParams = new URLSearchParams(window.location.search);
+    const productParam = urlParams.get('product');
+    const [selectedTradePair, setSelectedTradePair] = useState(productParam || DEFAULT_TRADING_PAIR);
     const [tickers, setTickers] = useState([]);
     const [messageHistory, setMessageHistory] = useState([]);
 
