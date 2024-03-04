@@ -32,7 +32,10 @@ interface lastJsonMessageProps {
     type: string;
 }
 
+interface TickerDataProps extends TradingPairProps, lastJsonMessageProps {}
+
 export type { 
     TradingPairProps, 
-    lastJsonMessageProps
+    lastJsonMessageProps,
+    TickerDataProps
 }

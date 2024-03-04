@@ -99,7 +99,8 @@ const useTradingPairs = () => {
         tradingPairs,
         selectedTradePair,
         handleSelectedTradePairChange,
-        tickers
+        tickers,
+        loading: readyState !== ReadyState.OPEN
     };
 }
 
