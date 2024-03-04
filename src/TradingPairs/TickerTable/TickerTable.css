@@ -20,4 +20,28 @@ tr {
 td, th {
     padding: 10px;
 }
+@keyframes changeBackground {
+    0% {
+        background-color: initial;
+    }
+    50% {
+        background-color: var(--backgroundColor);
+    }
+    100% {
+        background-color: initial;
+    }
+}
 
+tbody tr:first-child {
+    animation: changeBackground 800ms linear 0 1;
+}
+
+.buy {
+   --backgroundColor: green;
+   animation: changeBackground 500ms linear 0s 1;
+}
+
+.sell {
+    --backgroundColor: red;
+    animation: changeBackground 500ms linear 0s 1;
+}

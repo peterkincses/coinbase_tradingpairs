@@ -28,16 +28,18 @@ const TickerTable: React.FC<TickerTableProps> = ({ tickers, loading }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {tickers.map((ticker: TickerDataProps) => (
-                        <tr key={ticker.trade_id}>
-                            <td>{ticker.trade_id}</td>
-                            <td>{ticker.side}</td>
-                            {/* <td>{currency.symbol + ticker.price}</td> */}
-                            <td>{ticker.price}</td>
-                            <td>{ticker.size}</td>
-                            <td>{extractTime(ticker.time)}</td>
-                        </tr>
-                    ))}
+                    {tickers.map((ticker: TickerDataProps) => {
+                        const rowClass = tickers[0] ? ticker.side : '';
+                        return (
+                            <tr key={ticker.trade_id} className={rowClass}>
+                                <td>{ticker.trade_id}</td>
+                                <td>{ticker.side}</td>
+                                <td>{ticker.price}</td>
+                                <td>{ticker.size}</td>
+                                <td>{extractTime(ticker.time)}</td>
+                            </tr>
+                        )})         
+                    }
                 </tbody>
             </table>
         </div>
