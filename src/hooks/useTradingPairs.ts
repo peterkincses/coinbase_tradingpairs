@@ -67,7 +67,8 @@ const useTradingPairs = () => {
             parseFloat(lastMessage.price) > 0
         ) {
             setMessageHistory((prev) => {
-                return (prev as any).concat(lastJsonMessage)
+                const filtered = (prev as any).filter((p: any) => p.product_id === lastMessage.product_id);
+                return filtered.concat(lastJsonMessage)
                                .sort((a: any, b: any) => (b.trade_id || 0) - (a.trade_id || 0))
                                .slice(0, 50);
             });
