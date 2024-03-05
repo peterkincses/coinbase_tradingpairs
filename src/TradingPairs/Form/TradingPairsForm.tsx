@@ -1,4 +1,3 @@
-import React, {CSSProperties} from 'react';
 import { TradingPairProps } from '../../types/TradingPairTypes';
 import Select from 'react-select';
 
