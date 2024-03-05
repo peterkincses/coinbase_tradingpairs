@@ -25,19 +25,28 @@ const TradingPairs = () => {
         return <TickerNews assetCode={assetCode} />
     }, [assetCode]);
 
+    const form = useMemo(() => {
+        if (tradingPairs.length === 0) return null;
+        return <TradingPairsForm 
+                        handleSelectedTradePairChange={handleSelectedTradePairChange}
+                        tradingPairs={tradingPairs}
+                        selectedTradePair={selectedTradePair}
+        />
+    }, [selectedTradePair, tradingPairs]);
+
+    const table = useMemo(() => {
+        if (tickers.length === 0) return null;
+        return <TickerTable tickers={tickers} loading={loading} />
+    }, [tickers, loading]);
+
     return (
         <div>
             <div className="page-title">
                 <h1>Trading Pair Updates</h1>
             </div>
             
-            <TradingPairsForm handleSelectedTradePairChange={handleSelectedTradePairChange}
-                              tradingPairs={tradingPairs}
-                              selectedTradePair={selectedTradePair}
-             />
-
-            <TickerTable tickers={tickers} loading={loading} />
-
+            {form}
+            {table}
             {news}
         </div>
     )

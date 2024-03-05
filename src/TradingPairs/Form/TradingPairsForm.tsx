@@ -8,6 +8,9 @@ interface TradingPairsFormProps {
 }
 
 const TradingPairsForm = ({handleSelectedTradePairChange, tradingPairs, selectedTradePair}:TradingPairsFormProps) => {
+    
+    if (tradingPairs.length === 0) return null;
+
     const options = tradingPairs.map((product: TradingPairProps) => (
         {value: product.id, label: product.display_name}
     ));
