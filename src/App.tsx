@@ -1,12 +1,14 @@
-import React from 'react';
+import React, {Suspense, lazy} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import TradingPairs from './TradingPairs/TradingPairs';
+const TradingPairs = lazy(() => import("./TradingPairs/TradingPairs"));
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <TradingPairs />
+      <Suspense fallback={<div>Loading ...</div>}>
+         <TradingPairs />
+      </Suspense>
     </div>
   );
 }
