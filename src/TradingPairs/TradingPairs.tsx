@@ -15,7 +15,9 @@ const TradingPairs = () => {
 
     return (
         <div>
-            <h1>Trading Pair Updates</h1>
+            <div className="page-title">
+                <h1>Trading Pair Updates</h1>
+            </div>
             
             <TradingPairsForm handleSelectedTradePairChange={handleSelectedTradePairChange}
                               tradingPairs={tradingPairs}

@@ -1,3 +1,8 @@
+.page-title {
+    text-align: center;
+    margin: 2rem 0;
+}
+
 .trade-pair-form {
     display: flex;
     gap: 1rem;
