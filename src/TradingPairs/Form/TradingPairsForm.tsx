@@ -15,7 +15,7 @@ const TradingPairsForm = ({handleSelectedTradePairChange, tradingPairs, selected
 
     return (
         <form className="trade-pair-form">
-            <div style={{textAlign: "left"}}>
+            <div>
                 <label htmlFor="product">Select a trading pair:</label>
                 <Select
                     defaultValue={{ value: selectedTradePair, label: selectedTradePair }}
