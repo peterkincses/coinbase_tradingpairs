@@ -87,9 +87,9 @@ const useTradingPairs = () => {
 
     //update the selected trading pair, reset the message history and tickers 
     //and send a websocket message to unsubscribe from the previous trading pair
-    const handleSelectedTradePairChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectedTradePairChange = ({value}: {value: string}) => {
         setSelectedTradePair((prev) => {
-            if (prev === e.target.value) {
+            if (prev === value) {
                 return prev;
             } else {
                 setMessageHistory([]);
@@ -103,7 +103,7 @@ const useTradingPairs = () => {
 
                 sendJsonMessage(unsubscribeMsg);
 
-                return e.target.value;
+                return value;
             }
         });
     }
