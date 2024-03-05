@@ -9,13 +9,12 @@ import {
 } from "react-router-dom";const TradingPairs = lazy(() => import("./TradingPairs/TradingPairs"));
 
 const App = () => {
-  const home = () => {
-    return (
+  const home = () => (
       <div className="homeStyles">
         <Link to="/trading-pairs">Trading Pairs</Link>
       </div>
-    )
-  }
+  )
+  
 
   return (
     <div className="App">

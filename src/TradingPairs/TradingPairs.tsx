@@ -1,8 +1,12 @@
-// import React from 'react';
+import {lazy} from 'react';
 import useTradingPairs from '../hooks/useTradingPairs';
 import './TradingPairs.css';
 import TickerTable from './TickerTable';
 import TradingPairsForm from './Form/TradingPairsForm';
+import { useMemo } from 'react';
+import { TradingPairProps } from '../types/TradingPairTypes';
+
+const TickerNews = lazy(() => import("./News"));
 
 const TradingPairs = () => {
     const { 
@@ -12,6 +16,14 @@ const TradingPairs = () => {
         tickers,
         loading
     } = useTradingPairs();
+
+    const assetCode = tradingPairs.find(
+          (pair: TradingPairProps) => pair.id === selectedTradePair)?.base_currency;
+
+    const news = useMemo(() => {
+        if (typeof assetCode === 'undefined') return null;
+        return <TickerNews assetCode={assetCode} />
+    }, [assetCode]);
 
     return (
         <div>
@@ -25,6 +37,8 @@ const TradingPairs = () => {
              />
 
             <TickerTable tickers={tickers} loading={loading} />
+
+            {news}
         </div>
     )
 }
