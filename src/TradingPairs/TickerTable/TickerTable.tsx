@@ -30,37 +30,39 @@ const TickerTable: React.FC<TickerTableProps> = ({ tickers, loading }) => {
     const sideValues = ['buy', 'sell'];
 
     return (
-        <div className="container">
+        <>
             <TickerFilters filterValues={sideValues} 
-                           filter={side}
-                           handleFilterClick={handleFilterClick} />
-
-            <table style={{ width: "100%" }} className="tickerTable">
-                <thead>
-                    <tr>
-                        <th>Trade Id</th>
-                        <th>Side</th>
-                        <th>Price</th>
-                        <th>Size</th>
-                        <th>Time</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {tableRows.map((ticker: TickerDataProps) => {
-                        const rowClass = tickers[0] ? ticker.side : '';
-                        return (
-                            <tr key={ticker.trade_id} className={rowClass}>
-                                <td>{ticker.trade_id}</td>
-                                <td>{ticker.side}</td>
-                                <td>{ticker.price}</td>
-                                <td>{ticker.size}</td>
-                                <td>{extractTime(ticker.time)}</td>
-                            </tr>
-                        )})         
-                    }
-                </tbody>
-            </table>
-        </div>
+                            filter={side}
+                            handleFilterClick={handleFilterClick} />
+                            
+            <div className="container">
+                <table style={{ width: "100%" }} className="tickerTable">
+                    <thead>
+                        <tr>
+                            <th>Trade Id</th>
+                            <th>Side</th>
+                            <th>Price</th>
+                            <th>Size</th>
+                            <th>Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tableRows.map((ticker: TickerDataProps) => {
+                            const rowClass = tickers[0] ? ticker.side : '';
+                            return (
+                                <tr key={ticker.trade_id} className={rowClass}>
+                                    <td>{ticker.trade_id}</td>
+                                    <td>{ticker.side}</td>
+                                    <td>{ticker.price}</td>
+                                    <td>{ticker.size}</td>
+                                    <td>{extractTime(ticker.time)}</td>
+                                </tr>
+                            )})         
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </>
     );
 };
 
