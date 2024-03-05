@@ -12,3 +12,8 @@ Setup steps:
 - used react-use-websocket for its ease of use managing websocket subscribe/unsubscribe actions
 - added a 100ms delay in updating the tickers, with BTC-USD/ETH-USD etc, layout trashing is too
   noticable otherwise
+
+<img width="785" alt="Screenshot 2024-03-05 at 01 32 54" src="https://github.com/peterkincses/immix/assets/4365665/f3547d85-75d9-48ae-a800-11d6d256a48d">
+
+
+  
