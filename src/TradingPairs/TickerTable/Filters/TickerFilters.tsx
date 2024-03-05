@@ -1,22 +1,22 @@
 interface FilterProps {
-    sideValues: string[];
-    side: string | null | undefined;
-    handleFilterClick: (sideValue: string) => void;
+    filterValues: string[];
+    filter: string | null | undefined;
+    handleFilterClick: (filterValue: string) => void;
 
 }
 
-const TickerFilters = ({sideValues, side, handleFilterClick}: FilterProps) => {
+const TickerFilters = ({filterValues, filter, handleFilterClick}: FilterProps) => {
 
-    if (!sideValues) return null;
+    if (!filterValues) return null;
 
     return (
         <div className="button-group">
-            {sideValues.map((sideValue) => {
-                const handleClick = () => handleFilterClick(sideValue);
+            {filterValues.map((filterValue: any) => {
+                const handleClick = () => handleFilterClick(filterValue);
                 return (
-                    <button key={sideValue} onClick={handleClick} 
-                            className={side === sideValue ? 'active': ''}>
-                        {sideValue.toUpperCase()}
+                    <button key={filterValue} onClick={handleClick} 
+                            className={filter === filterValue ? 'active': ''}>
+                        {filterValue.toUpperCase()}
                     </button>
                 );
             })}

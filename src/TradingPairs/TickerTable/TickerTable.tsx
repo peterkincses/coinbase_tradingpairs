@@ -17,29 +17,22 @@ const TickerTable: React.FC<TickerTableProps> = ({ tickers, loading }) => {
         setTableRows(
             side ? tickers.filter((ticker) => ticker.side === side) : tickers
         );
-    }, [tickers]);
-
-    useEffect(() => {
-        setTableRows(
-            side ? tickers.filter((ticker) => ticker.side === side) : tickers
-        );
-    }, [side]);
+    }, [tickers, side]);
 
     if (loading) return <div>Loading...</div>;
 
     if (tickers.length === 0) return null;
 
-    const handleFilterClick = (sideValue: string) => {
-        setSide(sideValue === side ? '' : sideValue);
+    const handleFilterClick = (filterValue: string) => {
+        setSide(filterValue === side ? '' : filterValue);
     }
 
     const sideValues = ['buy', 'sell'];
 
     return (
         <div className="container">
-
-            <TickerFilters sideValues={sideValues} 
-                           side={side}
+            <TickerFilters filterValues={sideValues} 
+                           filter={side}
                            handleFilterClick={handleFilterClick} />
 
             <table style={{ width: "100%" }} className="tickerTable">

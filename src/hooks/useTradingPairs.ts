@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
     TRADING_PAIRS_API,
     TICKERS_SOCKET_URL,
@@ -7,10 +7,10 @@ import {
 import { TradingPairProps, lastJsonMessageProps } from '../types/TradingPairTypes';
 import useWebSocket, { ReadyState } from 'react-use-websocket';
 
-
 const useTradingPairs = () => {
 
     const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(TICKERS_SOCKET_URL, {});
+
     const [tradingPairs, setTradingPairs] = useState<TradingPairProps[]>([]);
     const urlParams = new URLSearchParams(window.location.search);
     const productParam = urlParams.get('product');
@@ -33,7 +33,11 @@ const useTradingPairs = () => {
            
             //exclude delisted trading pairs and sort alphabetically
             setTradingPairs(pairs.filter((pair) => pair.status !== "delisted")
-                            .sort((a: {base_currency: string}, b: {base_currency: string}) => a.base_currency.localeCompare(b.base_currency))
+                            .sort((
+                                   a: {base_currency: string}, 
+                                   b: {base_currency: string}
+                                  ) => a.base_currency.localeCompare(b.base_currency)
+                            )
             );
         };
 
@@ -62,7 +66,7 @@ const useTradingPairs = () => {
     useEffect(() => {
         let lastMessage = lastJsonMessage as lastJsonMessageProps;
         
-        if (typeof lastMessage !== undefined && 
+        if (lastMessage !== null && 
             (lastMessage?.type === "match" || lastMessage?.type === "last_match") &&
             parseFloat(lastMessage.price) > 0
         ) {
@@ -75,8 +79,8 @@ const useTradingPairs = () => {
         }
     }, [lastJsonMessage]);
 
+    //update the tickers every second instead of on every message
     useEffect(() => {
-        // if (loading) { setLoading(false); }
         const updateTickers = setInterval(() => {
             setTickers(messageHistoryRef.current);
         }, 1000);
